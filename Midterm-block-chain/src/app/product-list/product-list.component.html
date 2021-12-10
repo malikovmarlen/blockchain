@@ -1,0 +1,48 @@
+<h2>Products</h2>
+
+<div *ngFor="let product of products">
+  <img src = {{product.imagePath}} width = 300px>
+  <h3>
+      <a [title]="product.name + ' details'" href= {{product.linkPath}}>
+      {{ product.name }}
+    </a>
+  </h3>
+  <p *ngIf="product.rating">
+    <strong>Rating:</strong> {{ product.rating }}
+  </p>
+  
+  <p *ngIf="product.description">
+    Description: {{ product.description }}
+  </p>
+
+  <button (click)="share()">
+    Share
+  </button>
+  <p></p>
+  <div>
+  <strong>Wtite quantity :</strong>
+  <input type="number" (ngSubmit)="total"/>
+  </div>
+  <div>
+  <strong>Wtite weight :</strong>
+  <input type="number" (ngSubmit)="total"/>
+  <strong> kg</strong>
+  </div>
+  <strong>Wtite departure date :</strong>
+  <form [formGroup]="_MyregisterForm" (ngSubmit)="onSubmit()">
+  <input type="date" formControlName="today_Date">
+  <button type="submit">Submit</button>
+</form>
+
+
+  <app-product-alerts
+  [product]="product"
+  (notify)="onNotify()">
+</app-product-alerts>
+
+</div>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
